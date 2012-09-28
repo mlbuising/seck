@@ -1,4 +1,4 @@
-package com.pcwerk.seck;
+package com.pcwerk.seck.ialexan;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
