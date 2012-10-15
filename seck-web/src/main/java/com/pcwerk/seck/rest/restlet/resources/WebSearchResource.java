@@ -10,14 +10,12 @@ import javax.servlet.ServletContext;
 
 import org.restlet.data.MediaType;
 import org.restlet.ext.freemarker.TemplateRepresentation;
-import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
 import com.pcwerk.seck.entities.DocumentSearchResult;
 import com.pcwerk.seck.file.FileWalker;
 import com.pcwerk.seck.file.Ranker;
@@ -39,7 +37,6 @@ public class WebSearchResource extends ServerResource {
 		// Get servlet container of Restlet
 		ServletContext sc = (ServletContext) getContext().getAttributes().get(
 				"org.restlet.ext.servlet.ServletContext");
-		Gson gson = new Gson();
 
 		// Return data for HTML Freemarker representation
 		Map<String, Object> map = new HashMap<String, Object>();
