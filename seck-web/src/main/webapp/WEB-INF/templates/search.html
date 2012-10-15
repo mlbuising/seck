@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Good'ol Search</title>
+
+		<script type="text/javascript">
+			function doSubmit() {
+				var theForm = document.getElementById("searchForm");
+				theForm.action = "/rest/search/" + document.getElementById("searchTerm").value;
+				theForm.submit();
+			}
+		</script>
+
+	</head>
+	<body>
+		<div style="text-align:center;padding-top:120px;"><img alt="Google" height="95" src="../../images/goodolsearch_logo.png" width="275" />
+			<form id="searchForm" method="get" action="" onsubmit="javascript:doSubmit();">
+				<input type="text" id="searchTerm" value="" size="75" />
+				<input type="button" value="Search" onclick="javascript:doSubmit();" />
+			</form>
+		</div>
+	</body>
+</html>

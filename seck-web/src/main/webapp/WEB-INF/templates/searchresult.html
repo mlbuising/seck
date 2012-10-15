@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Good'ol Search</title>
+
+		<script type="text/javascript">
+			function doSubmit() {
+				var theForm = document.getElementById("searchForm");
+				theForm.action = "/rest/search/" + document.getElementById("searchTerm").value;
+				theForm.submit();
+			}
+		</script>
+
+	</head>
+	<body style="padding: 0px 0px 0px 0px;margin: 0px 0px 0px 0px;">
+		<div style="height:29px;background-color: #2D2D2D;"></div>
+		<div style="text-align:center;background-color:#eee;display:table;width:100%">
+			<table><tr>
+			<td style="padding:15px 0px 15px 15px;"><div><a href="/rest/search"><img style="border-size:0px" alt="Google" height="35" src="../../images/goodolsearch_logo.png" /></a></div></td>
+			<td style="padding-left:35px;"><div><form id="searchForm" method="get" action="" onsubmit="javascript:doSubmit();">
+				<input type="text" id="searchTerm" value="${searchTerm}" size="75" />
+				<input type="button" value="Search" onclick="javascript:doSubmit();" style="background-color: #4D90FE;border: 1px solid #3079ED;color: white !important;"/>
+			</form></div></td>
+			</tr></table>
+		</div>
+		<div style="width:100%;font: 13px/27px Arial,sans-serif;margin-bottom:15px;">
+			<table style="border-bottom:1px solid #ccc;width:100%"><tr>
+			<td style="padding:15px 0px 15px 15px;color: #DD4B39;font: 20px Arial;width:137px;">Search</td>
+			<td style="padding-left:0px;color: #bbb;">About ${resultSize} results (${elapsedTime} seconds)</td>
+			</tr></table>
+		</div>
+		<div style="font: 13px/27px Arial,sans-serif;padding-left:155px">
+		  	<#list rankedSearchResults as result>
+		    	<div style="margin:0px 0px 0px 0px;font-weight:bold;color:green;">${result.filePath}</div>
+		    	<div style="margin:-10px 0px 10px 0px;padding-left:10px;font-style:oblique;">Count: ${result.tf}, Score: ${result.score}</div>
+		  	</#list>
+		</div>
+	</body>
+</html>
