@@ -69,7 +69,7 @@ public class App {
 		System.out.println("[i]   crawling starts");
 
 		CrawlerTaskManager ctm = new CrawlerTaskManager(Integer.parseInt(params
-				.get("tc")));
+				.get("tc")), Integer.parseInt(params.get("depth")));
 
 		Set<String> seedUrlSet = new HashSet<String>(
 				Arrays.asList(new String[] { params.get("root-url") }));

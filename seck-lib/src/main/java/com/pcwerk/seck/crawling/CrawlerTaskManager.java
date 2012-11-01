@@ -18,23 +18,36 @@ public class CrawlerTaskManager {
 
 	private final Logger LOGGER = LoggerFactory.getLogger("CrawlerTaskManager");
 
-	private final long POLITE_INTERVAL = 5000l;
-	private final long MAX_TIMEOUT = 30000l;
+	private final long POLITE_INTERVAL = 500l;
+	private final long MAX_TIMEOUT = 5000l;
 
 	private final int maxThreadCount;
+	private final int maxDepth;
+
+	private boolean hasAvailableThreads;
 
 	private Queue<ParsedDocument> frontier;
+
+	private ScheduledExecutorService crawlerScheduler;
+
+	public CrawlerTaskManager(final int maxThreadCount, final int maxDepth) {
+		this.maxThreadCount = maxThreadCount;
+		this.maxDepth = maxDepth;
+		this.hasAvailableThreads = true;
+		this.frontier = new PriorityBlockingQueue<ParsedDocument>();
+		this.crawlerScheduler = new ScheduledThreadPoolExecutor(maxThreadCount);
+	}
+
+	public ScheduledExecutorService getCrawlerScheduler() {
+		return crawlerScheduler;
+	}
 
 	public Queue<ParsedDocument> getFrontier() {
 		return frontier;
 	}
 
-	ScheduledExecutorService crawlerScheduler;
-
-	public CrawlerTaskManager(final int maxThreadCount) {
-		this.maxThreadCount = maxThreadCount;
-		this.frontier = new PriorityBlockingQueue<ParsedDocument>();
-		this.crawlerScheduler = new ScheduledThreadPoolExecutor(maxThreadCount);
+	public int getMaxDepth() {
+		return maxDepth;
 	}
 
 	public void start(Set<String> seedUrls) {
@@ -42,12 +55,10 @@ public class CrawlerTaskManager {
 		// Initialize frontier
 		for (String url : seedUrls) {
 			try {
-				frontier.add(new ParsedDocument(url));
+				frontier.add(new ParsedDocument(url, 0));
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
 
 		synchronized (this) {
@@ -61,16 +72,29 @@ public class CrawlerTaskManager {
 				timeoutCounter = timeoutEnd - timeoutStart;
 
 				if (timeoutCounter > MAX_TIMEOUT) {
-					System.out.println("No more sites left in frontier. Spawning of crawler threads stopped.");
+					System.out.println("[i]   Frontier size: " + (frontier.size()));
+					System.out
+							.println("[i]   No more documents left in frontier. Spawning of crawler threads stopped.");
+					System.out.println("[i]   Currently active thread count: "
+							+ currentThreadCount);
+					crawlerScheduler.shutdown();
 					return;
 				}
 
+				// Create crawler threads at specified politeness interval
+				if (currentThreadCount >= maxThreadCount) {
+					this.hasAvailableThreads = false;
+				} else {
+					this.hasAvailableThreads = true;
+				}
+
 				if (timeoutCounter > POLITE_INTERVAL) {
-					if (currentThreadCount < maxThreadCount && !frontier.isEmpty()) {
+					// Create crawlers threads from available pool
+					while (hasAvailableThreads && !frontier.isEmpty()) {
 						timeoutStart = System.currentTimeMillis();
-						System.out.println(frontier.size());
+						System.out.println("[i]   Frontier size: " + frontier.size());
 						ParsedDocument newDoc = frontier.poll();
-						
+
 						if (newDoc == null) {
 							continue;
 						}
@@ -78,6 +102,12 @@ public class CrawlerTaskManager {
 						crawlerScheduler.schedule(new CrawlerTask(newDoc, this),
 								POLITE_INTERVAL, TimeUnit.MILLISECONDS);
 
+						System.out.println("[i]   Current actively thread count: "
+								+ (++currentThreadCount));
+
+						if (currentThreadCount >= maxThreadCount) {
+							this.hasAvailableThreads = false;
+						}
 					}
 				}
 			}

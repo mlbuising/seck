@@ -22,6 +22,11 @@ public class ParsedDocument extends ConcurrentSkipListMap<String, String>
 	private Date dateLastModified;
 	private String title;
 	private String body;
+	private int depth;
+
+	public int getDepth() {
+		return depth;
+	}
 
 	public ParsedDocument(URL url, Date dateLastModified, String title,
 			String body) {
@@ -40,6 +45,11 @@ public class ParsedDocument extends ConcurrentSkipListMap<String, String>
 	public ParsedDocument(String url) throws MalformedURLException {
 			this.url = new URL(url);
 	}
+	
+	public ParsedDocument(String url, int depth) throws MalformedURLException {
+		this(url);
+		this.depth = depth;
+}
 
 	public URL getUrl() {
 		return url;
@@ -50,6 +60,9 @@ public class ParsedDocument extends ConcurrentSkipListMap<String, String>
 	}
 
 	public String getDateLastModifiedString() {
+		if(dateLastModified == null) {
+			return "";
+		}
 		return sdf.format(dateLastModified);
 	}
 
@@ -63,13 +76,6 @@ public class ParsedDocument extends ConcurrentSkipListMap<String, String>
 			this.dateLastModified = pd.dateLastModified;
 			this.body = pd.body;
 		}
-	}
-
-	@Override
-	public String toString() {
-		return "ParsedDocument [url=" + url + ", dateLastModified="
-				+ dateLastModified + ", title=" + title + ", keySet="
-				+ this.keySet().toString() + "]";
 	}
 
 	public void merge(Document d) {
@@ -113,6 +119,13 @@ public class ParsedDocument extends ConcurrentSkipListMap<String, String>
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	@Override
+	public String toString() {
+		return "ParsedDocument [url=" + url + ", dateLastModified="
+				+ getDateLastModifiedString() + ", title=" + title + ", keySet="
+				+ this.keySet().toString() + "]";
 	}
 
 	public int compareTo(ParsedDocument o) {
