@@ -12,7 +12,7 @@
       <scope>runtime</scope>
       <includes>
         <include>gnu.getopt:java-getopt</include>
-        <include>pcwerk:seck-lib</include>
+        <include>com.pcwerk:seck-lib</include>
       </includes>
     </dependencySet>
   </dependencySets>
