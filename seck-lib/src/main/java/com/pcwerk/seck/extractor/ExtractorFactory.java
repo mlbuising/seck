@@ -1,6 +1,7 @@
 package com.pcwerk.seck.extractor;
 
 import java.io.File;
+import org.apache.tika.Tika;
 public class ExtractorFactory {
 	
 	public ExtractorFactory()
@@ -9,44 +10,57 @@ public class ExtractorFactory {
 	}
 
 	public Extractor getExtractor(File file)
-	{
-		System.out.println("ExtractorFactory.getExtractor()-Enter");
-		//To do: check fileType to different extractors
-		//...
-		
-		//return new HtmlExtractor(file);
-				
-		//return new MediaExtractor(file);
-		
-		System.out.println("ExtractorFactory.getExtractor()-Exit");
-		return new DocumentExtractor(file);		
+	{		
+		Tika tika = new Tika();
+		String mimeType = "";
+		try {
+			mimeType = tika.detect(file);			
+			if(mimeType.equals("html/text")) 
+				return new HtmlExtractor(file);
+			else if(mimeType.startsWith("audio") || 
+					mimeType.startsWith("image")) 
+				return new MediaExtractor(file);
+			else if(mimeType.startsWith("application")) 
+				return new DocumentExtractor(file);			
+			return null;
+		} 
+		catch (Exception e)
+		{
+			System.out.println("ExtractorFactory-getExtractor-Error: " + e.getMessage());
+		}
+		return null;	
 	}	
 	
-	/*
+/*
 	public static void main( String[] args )
 	{		
+		System.out.println("start");
 		ExtractorFactory efactory = new ExtractorFactory();
-		//String fileName = "../downloaded files/Getting Started.pdf";
-		//String fileName = "../downloaded files/Book.xlsx";
-		String fileName = "../downloaded files/test.docx";
+		String fileName = "";
+		//fileName = "C:\\Getting Started.pdf";
+		//fileName = "C:\\Book.xlsx";
+		fileName = "C:\\test.docx";
 		
-		File file = new File(fileName);
-		
+		File file = new File(fileName);		
 		if(file.exists())
 		{		
-			System.out.println("Found file.");
 			Extractor ex = efactory.getExtractor(file);	
 			try {
-				Bloblet b = ex.extract();			
-				Metadata m =  b.getMetadata();
-				for (String name : m.names()) 
-				    System.out.println("metadata: " + name + " - " + m.get(name));				
+				if(ex!=null)
+				{ 
+					WebDocument webDoc = ex.extract();			
+					Metadata m =  webDoc.getMetadata();
+					for (String name : m.names()) 
+					    System.out.println( "key:" + name + ",value:" + m.get(name));	
+				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
-		System.out.println("done.");		
+		else
+		{
+			System.out.println("File Not found.");
+		}
+		System.out.println("end");
 	}
 	*/
 }

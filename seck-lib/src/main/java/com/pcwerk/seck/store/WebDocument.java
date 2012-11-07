@@ -1,4 +1,4 @@
-package com.pcwerk.seck.blob;
+package com.pcwerk.seck.store;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,20 +6,19 @@ import java.util.List;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.sax.Link;
 
-public class Bloblet {
+public class WebDocument {
 	private String url;
 	private String hash;
 	private String location;
-	private String type;
+	private String content;
 	private List<Link> links;
 	private Metadata metadata;
 	
-	public Bloblet()
+	public WebDocument()
 	{
 		url = "";
 		hash = "";
 		location = "";
-		type = "";
 		links = new ArrayList<Link>();
 	    metadata = null;
 	}
@@ -48,14 +47,6 @@ public class Bloblet {
 		this.location = location;
 	}
 	
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public List<Link> getLinks() {
 		return links;
 	}
@@ -70,6 +61,14 @@ public class Bloblet {
 
 	public void setMetadata(Metadata metadata) {
 		this.metadata = metadata;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 }

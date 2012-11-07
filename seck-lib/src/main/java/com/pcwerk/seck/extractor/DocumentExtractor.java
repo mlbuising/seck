@@ -10,7 +10,7 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.ContentHandler;
-import com.pcwerk.seck.blob.Bloblet;
+import com.pcwerk.seck.store.WebDocument;
 
 public class DocumentExtractor extends Extractor {
 
@@ -18,25 +18,24 @@ public class DocumentExtractor extends Extractor {
 		super(file);
 	}
 	
-	public Bloblet extract() throws IOException {
-		System.out.println("DocumentExtractor-Enter");
+	public WebDocument extract() throws IOException {
 		FileInputStream is = null;
-		Bloblet b = new Bloblet();
+		WebDocument webDoc = new WebDocument();
+		int writeLimit = 10 * 1024 * 1024;
 	    try {
 	      is = new FileInputStream(this.file);
-	      ContentHandler contenthandler = new BodyContentHandler();
+	      ContentHandler contenthandler = new BodyContentHandler(writeLimit);
 	      Metadata metadata = new Metadata();
-	      //metadata.set(Metadata.RESOURCE_NAME_KEY, this.file.getName());
+	      metadata.set(Metadata.RESOURCE_NAME_KEY, this.file.getName());
 	      ParseContext parseContext = new ParseContext();
 	      Parser parser = new AutoDetectParser();
 	      parser.parse(is, contenthandler, metadata, parseContext);			
-		   b.setMetadata(metadata);
-		   
+	      webDoc.setMetadata(metadata);
+		  webDoc.setContent(contenthandler.toString());
 	    }catch(Exception e)
 	    {
-	    	System.out.println("DocumentExtractor-Error");
+	    	System.out.println("DocumentExtractor-extract()-Error:" + e.getMessage());
 	    }
-		System.out.println("DocumentExtractor-Exit");
-		return b;
+		return webDoc;
 	}	
 }

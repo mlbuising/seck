@@ -17,7 +17,7 @@ import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.ContentHandler;
 
-import com.pcwerk.seck.blob.Bloblet;
+import com.pcwerk.seck.store.WebDocument;;
 
 public class MediaExtractor extends Extractor {	
 	public MediaExtractor(File file) {
@@ -43,8 +43,8 @@ public class MediaExtractor extends Extractor {
 		}
 	}
 
-	public Bloblet extract() throws IOException {
-		return new Bloblet();
+	public WebDocument extract() throws IOException {
+		return new WebDocument();
 	}
      
 //	public static void main( String[] args )

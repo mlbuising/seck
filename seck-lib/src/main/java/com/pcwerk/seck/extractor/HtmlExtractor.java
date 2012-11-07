@@ -2,8 +2,9 @@ package com.pcwerk.seck.extractor;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
-import com.pcwerk.seck.blob.Bloblet;
+import com.pcwerk.seck.store.WebDocument;
 
 public class HtmlExtractor extends Extractor {
 
@@ -11,12 +12,12 @@ public class HtmlExtractor extends Extractor {
 		super(file);
 	}
 
-	public Bloblet extract(String baseUrl)
+	public WebDocument extract(URL baseUrl)
 	{
-		return new Bloblet();
+		return new WebDocument();
 	}
 
-	public Bloblet extract() throws IOException {
-		return new Bloblet();
+	public WebDocument extract() throws IOException {
+		return new WebDocument();
 	}	
 }
