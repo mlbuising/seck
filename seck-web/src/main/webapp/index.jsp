@@ -5,7 +5,7 @@
 Search Engine Construction Kit (SECK) Demo page.  Below are the various web applications
 demoing the tools and technologies used for making SECK.
 
-<h2>Obligatory Hello, World Application</h2> 
+<h2>Obligatory "Hello, World!" Application</h2> 
 
 <form action="/servlet/hello" method="get">
   <input type="text" name="name">
@@ -25,7 +25,7 @@ demoing the tools and technologies used for making SECK.
 
 <h2>JSTL Demo </h2>
 
-<a href="/jstl.jps">Simple JSTL page</a> (currently broken)
+<a href="/jstl.jsp">Simple JSTL page</a> [currently broken]
 
 </body>
 </html>
