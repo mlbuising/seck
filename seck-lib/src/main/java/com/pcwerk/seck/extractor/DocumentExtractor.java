@@ -3,6 +3,7 @@ package com.pcwerk.seck.extractor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -18,7 +19,7 @@ public class DocumentExtractor extends Extractor {
 		super(file);
 	}
 	
-	public WebDocument extract() throws IOException {
+	public WebDocument extract(URL sourceUrl) throws IOException {
 		FileInputStream is = null;
 		WebDocument webDoc = new WebDocument();
 		int writeLimit = 10 * 1024 * 1024;
@@ -32,6 +33,7 @@ public class DocumentExtractor extends Extractor {
 	      parser.parse(is, contenthandler, metadata, parseContext);			
 	      webDoc.setMetadata(metadata);
 		  webDoc.setContent(contenthandler.toString());
+		  webDoc.setUrl(sourceUrl.toString());
 	    }catch(Exception e)
 	    {
 	    	System.out.println("DocumentExtractor-extract()-Error:" + e.getMessage());

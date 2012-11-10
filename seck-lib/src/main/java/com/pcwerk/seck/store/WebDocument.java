@@ -71,4 +71,15 @@ public class WebDocument {
 		this.content = content;
 	}
 	
+	public boolean isHTML(){
+		String contentType = this.getMetadata()!=null? 
+				this.getMetadata().get("Content-Type"):"";
+
+		if (contentType!= null &&
+			!contentType.isEmpty() &&  
+			contentType.startsWith("text/html"))
+			return true;
+		return false;
+	}
+	
 }

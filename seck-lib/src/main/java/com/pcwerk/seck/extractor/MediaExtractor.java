@@ -9,6 +9,7 @@ package com.pcwerk.seck.extractor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -43,7 +44,7 @@ public class MediaExtractor extends Extractor {
 		}
 	}
 
-	public WebDocument extract() throws IOException {
+	public WebDocument extract(URL sourceUrl) throws IOException {
 		return new WebDocument();
 	}
      
