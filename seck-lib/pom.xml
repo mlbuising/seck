@@ -11,7 +11,6 @@
 
   <artifactId>seck-lib</artifactId>
   <packaging>jar</packaging>
-
   <dependencies>
     <dependency>
       <groupId>commons-httpclient</groupId>
@@ -22,6 +21,16 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.juniversalchardet</groupId>
+      <artifactId>juniversalchardet</artifactId>
+      <scope>compile</scope>
+    </dependency>
+		<dependency>
+      <groupId>org.ccil.cowan.tagsoup</groupId>
+      <artifactId>tagsoup</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.tika</groupId>
