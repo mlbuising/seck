@@ -12,6 +12,8 @@
       <scope>runtime</scope>
       <includes>
         <include>gnu.getopt:java-getopt</include>
+        <include>org.ccil.cowan.tagsoup:tagsoup</include>
+        <include>com.googlecode.juniversalchardet:juniversalchardet</include>
         <include>org.apache.tika:tika-core</include>
         <include>org.apache.tika:tika-parsers</include>
         <include>com.pcwerk:seck-lib</include>

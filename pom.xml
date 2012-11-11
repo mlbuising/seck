@@ -238,7 +238,7 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.10</version>
-        <scope>test</scope>
+        <scope>test</scope>  
       </dependency>
       <dependency>
       	<groupId>org.apache.tika</groupId>
@@ -252,6 +252,16 @@
         <version>1.2</version>
         <scope>provided</scope>
       </dependency>	
+      <dependency>
+        <groupId>com.googlecode.juniversalchardet</groupId>
+        <artifactId>juniversalchardet</artifactId>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.ccil.cowan.tagsoup</groupId>
+        <artifactId>tagsoup</artifactId>
+        <scope>compile</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
