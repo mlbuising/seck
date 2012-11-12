@@ -29,9 +29,20 @@
 			<param-value>com.pcwerk.seck.rest.restlet.SeckWebRestletApp</param-value>
 		</init-param>
 	</servlet>
+
 	
 	<!--  servlet mapping, aka shortcuts -->
 	
+
+	<servlet>
+		<servlet-name>RestletTest</servlet-name>
+		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+		<init-param>
+			<param-name>org.restlet.application</param-name>
+			<param-value>com.pcwerk.seck.rest.restletTest.SeckWebRestletAppTest</param-value>
+		</init-param>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>HelloWorld</servlet-name>
 		<url-pattern>/servlet/hello</url-pattern>
@@ -50,6 +61,13 @@
 	<servlet-mapping>
 		<servlet-name>Restlet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet-mapping>
+		<servlet-name>RestletTest</servlet-name>
+		<url-pattern>/rest-test/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>

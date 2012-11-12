@@ -1,4 +1,4 @@
-package com.pcwerk.seck.rest.restlet;
+package com.pcwerk.seck.rest.restletTest;
 
 import java.util.Date;
 
@@ -14,17 +14,20 @@ import com.pcwerk.seck.rest.models.InMemoryGuestBook;
 import com.pcwerk.seck.rest.restlet.resources.DefaultResource;
 import com.pcwerk.seck.rest.restlet.resources.HelloWorldResource;
 import com.pcwerk.seck.rest.restlet.resources.SeckResource;
+import com.pcwerk.seck.rest.restletTest.resources.HelloWorldResourceTest;
+import com.pcwerk.seck.rest.restletTest.resources.SeckResourceTest;
+
 
 import freemarker.template.Configuration;
 
-public class SeckWebRestletApp extends Application {
+public class SeckWebRestletAppTest extends Application {
 
 	// Freemarker configuration
 	private Configuration configuration;
 
 	private GuestBook guestBook;
 
-	public SeckWebRestletApp() {
+	public SeckWebRestletAppTest() {
 		this.guestBook = new InMemoryGuestBook();
 		populateGuestBook();
 	}
@@ -41,19 +44,19 @@ public class SeckWebRestletApp extends Application {
 		// Set freemarker configuration
 		configuration = new Configuration();
 		configuration.setTemplateLoader(new ContextTemplateLoader(getContext(),
-				"war:///WEB-INF/templates"));
+				"war:///WEB-INF/templates_test"));
 
 		// TODO: Define URI mapping to classes that extend ServerResource class
 		// TODO: Put ServerResource subclass in the
 		// com.pcwerk.seck.rest.reslet.resources package
 		// Example: router.attach("/search", SearchResource.class);
-		router.attach("/helloworld", HelloWorldResource.class);
-		router.attach("/helloworld/", HelloWorldResource.class);
-		router.attach("/helloworld/{name}", HelloWorldResource.class);
+		router.attach("/helloworld", HelloWorldResourceTest.class);
+		router.attach("/helloworld/", HelloWorldResourceTest.class);
+		router.attach("/helloworld/{name}", HelloWorldResourceTest.class);
 		
-		router.attach("/search", SeckResource.class);
-		router.attach("/search/", SeckResource.class);
-		router.attach("/search/{name}", SeckResource.class);
+		router.attach("/search", SeckResourceTest.class);
+		router.attach("/search/", SeckResourceTest.class);
+		router.attach("/search/{name}", SeckResourceTest.class);
 		
 		//router.attach("/css", new Directory(getContext(), "file://<STATIC_DIR>"));
 
