@@ -253,14 +253,16 @@
         <scope>provided</scope>
       </dependency>	
       <dependency>
-        <groupId>com.googlecode.juniversalchardet</groupId>
+      	<groupId>com.googlecode.juniversalchardet</groupId>
         <artifactId>juniversalchardet</artifactId>
-        <scope>compile</scope>
+        <version>1.0.3</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
-         <groupId>org.ccil.cowan.tagsoup</groupId>
+      	<groupId>org.ccil.cowan.tagsoup</groupId>
         <artifactId>tagsoup</artifactId>
-        <scope>compile</scope>
+        <version>1.2.1</version>
+        <scope>provided</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
