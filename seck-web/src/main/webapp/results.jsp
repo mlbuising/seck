@@ -34,7 +34,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
        		<div class="navbar-inner">
        			<div class="container-fluid">
-	        		<a class="brand" href="#">SECK Home Icon</a>
+	        		<a class="brand" href="#"><img src="img/logo.png" /></a>
 		        	<form class="navbar-search form-search">
 						<div class="input-append">
 							<input type="text" class="input-xxlarge search-query" x-webkit-speech x-webkit-grammar="builtin:search" placeholder="the term that was searched">

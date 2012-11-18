@@ -26,14 +26,14 @@
         <div class="container-fluid">
         
         	<div class="row-fluid pagination-centered">
-        		<div class="span12"><h1>SECK LOGO HERE</h1></div>
+        		<div class="span12"><img style="margin:100px auto 20px 0px;" src="img/logo-large.png" /></div>
         	</div>
         	
         	<div class="row-fluid pagination-centered">
         		<div class="span12">
 					<form class="form-search">
 					<div class="input-append">
-					  <input type="text" class="input-xxlarge search-query" x-webkit-speech x-webkit-grammar="builtin:search" placeholder="Enter your search term...">
+					  <input type="text" class="input-xxlarge search-query" x-webkit-speech x-webkit-grammar="builtin:search" placeholder="Enter your search term..." >
 					  <button type="submit" class="btn"><i class="icon-search"></i> Search</button>
 					  </div>
 					</form>
