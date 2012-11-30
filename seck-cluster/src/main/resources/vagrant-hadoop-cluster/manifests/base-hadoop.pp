@@ -72,11 +72,38 @@ file { "/root/.ssh/id_rsa.pub":
   require => Exec['apt-get update']
 }
 
-ssh_authorized_key { "ssh_key":
-  ensure => "present",
-  key    => "AAAAB3NzaC1yc2EAAAADAQABAAABAQCeHdBPVGuSPVOO+n94j/Y5f8VKGIAzjaDe30hu9BPetA+CGFpszw4nDkhyRtW5J9zhGKuzmcCqITTuM6BGpHax9ZKP7lRRjG8Lh380sCGA/691EjSVmR8krLvGZIQxeyHKpDBLEmcpJBB5yoSyuFpK+4RhmJLf7ImZA7mtxhgdPGhe6crUYRbLukNgv61utB/hbre9tgNX2giEurBsj9CI5yhPPNgq6iP8ZBOyCXgUNf37bAe7AjQUMV5G6JMZ1clEeNPN+Uy5Yrfojrx3wHfG40NuxuMrFIQo5qCYa3q9/SVOxsJILWt+hZ2bbxdGcQOd9AXYFNNowPayY0BdAkSr",
-  type   => "ssh-rsa",
-  user   => "root",
-  require => File['/root/.ssh/id_rsa.pub']
+file { "/root/.ssh/authorized_keys":
+  source => "puppet:///modules/hadoop/authorized_keys",
+  mode => 644,
+  owner => root,
+  group => root,
+  require => Exec['apt-get update']
 }
 
+file { "/etc/ssh/ssh_config":
+  source => "puppet:///modules/hadoop/ssh_config",
+  mode => 644,
+  owner => root,
+  group => root,
+  require => Exec['apt-get update']
+}
+
+node master {
+  include hbase
+}
+
+node backup {
+  include hbase
+}
+
+node hadoop1 {
+  include hbase
+}
+
+node hadoop2 {
+  include hbase
+}
+
+node hadoop3 {
+  include hbase
+}
