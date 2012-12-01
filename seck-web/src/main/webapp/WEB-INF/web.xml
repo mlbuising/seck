@@ -41,6 +41,10 @@
 			<param-name>org.restlet.application</param-name>
 			<param-value>com.pcwerk.seck.rest.restletTest.SeckWebRestletAppTest</param-value>
 		</init-param>
+		<init-param>
+        <param-name>org.restlet.clients</param-name>
+        <param-value>FILE</param-value>
+    </init-param>
 	</servlet>
 
 	<servlet-mapping>
@@ -60,14 +64,14 @@
 	
 	<servlet-mapping>
 		<servlet-name>Restlet</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/search/*</url-pattern>
 	</servlet-mapping>
 
 
 
 	<servlet-mapping>
 		<servlet-name>RestletTest</servlet-name>
-		<url-pattern>/rest-test/*</url-pattern>
+		<url-pattern>/search-test/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
