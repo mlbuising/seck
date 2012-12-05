@@ -1,4 +1,4 @@
-package com.pcwerk.seck;
+package com.pcwerk.seck.cluster;
 
 import java.util.ArrayList;
 import java.util.HashMap;

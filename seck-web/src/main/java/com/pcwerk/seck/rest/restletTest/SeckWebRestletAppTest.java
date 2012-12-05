@@ -4,10 +4,6 @@ import java.util.Date;
 
 import org.restlet.Application;
 import org.restlet.Restlet;
-<<<<<<< HEAD
-=======
-import org.restlet.data.CharacterSet;
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
 import org.restlet.ext.freemarker.ContextTemplateLoader;
 import org.restlet.resource.Directory;
 import org.restlet.routing.Router;
@@ -18,13 +14,7 @@ import com.pcwerk.seck.rest.models.InMemoryGuestBook;
 import com.pcwerk.seck.rest.restlet.resources.DefaultResource;
 import com.pcwerk.seck.rest.restlet.resources.HelloWorldResource;
 import com.pcwerk.seck.rest.restlet.resources.SeckResource;
-<<<<<<< HEAD
 import com.pcwerk.seck.rest.restletTest.resources.HelloWorldResourceTest;
-=======
-
-import com.pcwerk.seck.rest.restletTest.resources.HomeResourceTest;
-
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
 import com.pcwerk.seck.rest.restletTest.resources.SeckResourceTest;
 
 
@@ -60,7 +50,6 @@ public class SeckWebRestletAppTest extends Application {
 		// TODO: Put ServerResource subclass in the
 		// com.pcwerk.seck.rest.reslet.resources package
 		// Example: router.attach("/search", SearchResource.class);
-<<<<<<< HEAD
 		router.attach("/helloworld", HelloWorldResourceTest.class);
 		router.attach("/helloworld/", HelloWorldResourceTest.class);
 		router.attach("/helloworld/{name}", HelloWorldResourceTest.class);
@@ -70,13 +59,6 @@ public class SeckWebRestletAppTest extends Application {
 		router.attach("/search/{name}", SeckResourceTest.class);
 		
 		//router.attach("/css", new Directory(getContext(), "file://<STATIC_DIR>"));
-=======
-				
-		router.attach("/", HomeResourceTest.class);	
-		
-		SeckWebRestletAppTest.this.getMetadataService().setDefaultCharacterSet(CharacterSet.UTF_8);
-		router.attach("/", new Directory(getContext(), "war:///"));
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
 
 		// Default resource handler for unmapped URIs
 		router.attachDefault(DefaultResource.class);
