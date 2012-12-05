@@ -1,5 +1,6 @@
 package com.pcwerk.seck;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,6 +11,12 @@ public class App {
   
   protected ArrayList<String> commandStack = new ArrayList<String>();
   protected HashMap<String,String> params = new HashMap<String,String>();
+  
+  
+  public App() {
+    // some default value
+    params.put("hbase-host", "localhost");
+  }
   
   public static void main(String[] argv) { 
     App app = new App();
@@ -33,12 +40,18 @@ public class App {
   private void usage() {
     System.out.println("usage: App <command> <required parameters> [options]");
     System.out.println("command(s):");
-    System.out.println("crawl             perform crawling action");
-    System.out.println("  --root-url=URL  start crawling at URL (required)");
+    System.out.println("crawl                perform crawling action");
+    System.out.println("crawlinfo            display crawled information");
+    System.out.println("hbasetest            run hbase connection test");
+    System.out.println("cmdlinesearch        run command line search");
     System.out.println("options:");
-    System.out.println("  --tc=#          specify the thread count (default=1)");
-    System.out.println("  --depth=#       specify crawling depth (default = 1");
-    System.out.println("  --file=FILENAME specify a datafile to save (if not specified, use to stdout)");
+    System.out.println("  --path=path        specify the search path");
+    System.out.println("  --search-key=key   specify the search keyword");
+    System.out.println("  --root-url=URL     specify the crawling at root url");
+    System.out.println("  --hbase-host=host  specifi the hostname (default=localhost");
+    System.out.println("  --tc=#             specify the thread count (default=1)");
+    System.out.println("  --depth=#          specify crawling depth (default = 1");
+    System.out.println("  --file=FILENAME    specify a datafile to save (if not specified, use to stdout)");
   }
   
   private void run() {
@@ -52,12 +65,28 @@ public class App {
         crawl();
       } else if (command.equals("crawl-info")) {
         crawlInfo();
+      } else if (command.equals("hbasetest")) {
+        hbaseTest();
+      } else if (command.equals("cmdlinesearch")) {
+        commandLineSearch();
       } else {
         System.out.println("[e]   '" + command + "' => unknown command");
       }
     }
   }
   
+  private void commandLineSearch() {
+    new CmdLineSearch().run(params.get("path"), params.get("search-key"));
+  }
+
+  private void hbaseTest() {
+    try {
+      new HBaseTest(params.get("hbase-host")).run();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   private void crawl() {
     System.out.println("[i]   crawling starts");
     
@@ -75,10 +104,13 @@ public class App {
   private void parseArgs(String[] argv) {
     StringBuffer sb = new StringBuffer();
 
-    final String shortopts = "-:hu:c:f:d:;";
+    final String shortopts = "-:hu:c:f:d:H:p:k;";
     final LongOpt[] longopts = 
     { 
         new LongOpt("help", LongOpt.NO_ARGUMENT, null, 'h'),
+        new LongOpt("path", LongOpt.REQUIRED_ARGUMENT, null, 'p'),
+        new LongOpt("search-key", LongOpt.REQUIRED_ARGUMENT, null, 'k'),
+        new LongOpt("hbase-host", LongOpt.REQUIRED_ARGUMENT, null, 'H'),
         new LongOpt("root-url", LongOpt.REQUIRED_ARGUMENT, sb, 'u'),
         new LongOpt("tc", LongOpt.REQUIRED_ARGUMENT, sb, 'c'),
         new LongOpt("depth", LongOpt.REQUIRED_ARGUMENT, sb, 'd'),
@@ -107,6 +139,15 @@ public class App {
       case 'h':
         usage();
         System.exit(0);
+        break;
+      case 'H':
+        params.put("hbase-host", g.getOptarg());
+        break;
+      case 'p':
+        params.put("path", g.getOptarg());
+        break;
+      case 'k':
+        params.put("search-key", g.getOptarg());
         break;
       case 'u':
         params.put("root-url", g.getOptarg());
