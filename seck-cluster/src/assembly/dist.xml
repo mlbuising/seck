@@ -5,17 +5,42 @@
   <formats>
     <format>tar.gz</format>
     <format>zip</format>
+    <format>jar</format>
   </formats>
   <includeBaseDirectory>true</includeBaseDirectory>
   <baseDirectory>${project.artifactId}-${project.version}</baseDirectory>
   <includeSiteDirectory>false</includeSiteDirectory>
   <dependencySets>
     <dependencySet>
+    <!-- 
       <outputDirectory>lib</outputDirectory>
       <unpack>false</unpack>
       <useProjectArtifact>true</useProjectArtifact>
       <useTransitiveDependencies>true</useTransitiveDependencies>
       <unpackOptions />
+       -->
+      <outputDirectory></outputDirectory>
+      <outputFileNameMapping></outputFileNameMapping>
+      <unpack>true</unpack>
+      <scope>runtime</scope>
+      <includes>
+        <include>gnu.getopt:java-getopt</include>
+<!-- 
+        <include>org.ccil.cowan.tagsoup:tagsoup</include>
+        <include>com.googlecode.juniversalchardet:juniversalchardet:1.0.3</include>
+ -->
+        <include>org.apache.tika:tika-core</include>
+<!-- 
+        <include>org.apache.tika:tika-parsers</include>
+ -->
+        <include>org.apache.hadoop:hadoop-core</include>
+        <include>org.apache.hadoop:zookeeper</include>
+        <include>com.google.protobuf:protobuf-java</include>
+        <include>commons-logging</include>
+        <include>log4j</include>
+        <include>org.apache.hbase:hbase</include>
+        <include>com.pcwerk:seck-lib</include>
+      </includes>
     </dependencySet>
   </dependencySets>
   <fileSets>
