@@ -2,10 +2,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-<<<<<<< HEAD
-=======
   
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
   <parent>
     <groupId>com.pcwerk</groupId>
     <artifactId>seck</artifactId>
@@ -34,28 +31,19 @@
   </build>
 
   <dependencies>
-<<<<<<< HEAD
-=======
 
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
     <dependency>
        <groupId>gnu.getopt</groupId>
        <artifactId>java-getopt</artifactId>
        <scope>compile</scope>
     </dependency> 
-<<<<<<< HEAD
-=======
 
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
     <dependency>
        <groupId>com.pcwerk</groupId>
        <artifactId>seck-lib</artifactId>
        <scope>compile</scope>
      </dependency>
-<<<<<<< HEAD
-=======
 
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
      <dependency>
        <groupId>junit</groupId>
        <artifactId>junit</artifactId>
@@ -75,21 +63,16 @@
      </dependency>
    
     <dependency>
-<<<<<<< HEAD
-=======
       <groupId>org.apache.hbase</groupId>
       <artifactId>hbase</artifactId>
       <scope>compile</scope>
     </dependency>
 
     <dependency>
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
       <groupId>org.apache.tika</groupId>
       <artifactId>tika-core</artifactId>
       <scope>compile</scope>
     </dependency>
-<<<<<<< HEAD
-=======
 
     <dependency>
       <groupId>org.apache.hadoop</groupId>
@@ -103,7 +86,6 @@
       <scope>compile</scope>
     </dependency>
 
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
     <dependency>
       <groupId>org.apache.tika</groupId>
       <artifactId>tika-parsers</artifactId>

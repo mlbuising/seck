@@ -247,8 +247,6 @@
         <scope>provided</scope>
       </dependency>
       <dependency>
-<<<<<<< HEAD
-=======
         <groupId>org.apache.hadoop</groupId>
         <artifactId>zookeeper</artifactId>
         <version>3.3.1</version>
@@ -266,7 +264,6 @@
         <scope>provided</scope>
       </dependency>
       <dependency>
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
       	<groupId>org.apache.tika</groupId>
         <artifactId>tika-parsers</artifactId>
         <version>1.2</version>

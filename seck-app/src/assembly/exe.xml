@@ -12,12 +12,6 @@
       <scope>runtime</scope>
       <includes>
         <include>gnu.getopt:java-getopt</include>
-<<<<<<< HEAD
-        <include>org.ccil.cowan.tagsoup:tagsoup</include>
-        <include>com.googlecode.juniversalchardet:juniversalchardet:1.0.3</include>
-        <include>org.apache.tika:tika-core</include>
-        <include>org.apache.tika:tika-parsers</include>
-=======
 <!-- 
         <include>org.ccil.cowan.tagsoup:tagsoup</include>
         <include>com.googlecode.juniversalchardet:juniversalchardet:1.0.3</include>
@@ -30,7 +24,6 @@
         <include>commons-logging</include>
         <include>log4j</include>
         <include>org.apache.hbase:hbase</include>
->>>>>>> 4f26047c6c2855b1e815bd479ee3cfdbc1dfe095
         <include>com.pcwerk:seck-lib</include>
       </includes>
     </dependencySet>
