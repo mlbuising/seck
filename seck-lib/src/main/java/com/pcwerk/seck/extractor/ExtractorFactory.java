@@ -51,12 +51,13 @@ public class ExtractorFactory {
 
 		String fileName =  "C:\\MyData\\School\\CS454\\workspace\\seck-0.0.4-src-v10-beta\\seck-0.0.4\\seck-app\\target\\temp internet files\\ID_1\\8ffdefbdec956b595d257f0aaeefd623.html";//args[0];
 		
-		String sourceURL = "https://www.google.com";// args[1];
+		String sourceURL = "http://newspaper.li/static/ba4bffea061eb7df9a93f937b31376e5.jpg";// args[1];
 		//this.main("C:\\MyData\\School\\CS454\\workspace\\seck-0.0.4-src-v10-beta\\seck-0.0.4\\seck-app\\target\\temp internet files\\ID_1",
 				//"https://www.google.com");
 		//fileName = "C:\\Getting Started.pdf";
 		//fileName = "C:\\Book.xlsx";
-		//fileName = "C:\\test.docx";		
+		//fileName = "C:\\test.docx";
+        //fileName = "/Users/macbook/Documents/green.gif";
 		
 		if (fileName==null) {
 			System.out.println("Null file argument.");
